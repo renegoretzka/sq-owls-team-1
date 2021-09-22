@@ -2,15 +2,12 @@ package com.example.myapplication.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
@@ -30,7 +27,7 @@ import com.example.myapplication.ui.viewModel.ToDoViewModel
 fun ToDoScreen() {
 
     val viewModel: ToDoViewModel = viewModel()
-    val todoList = viewModel.toDoState
+    val todoList = viewModel.shoppingState
 
     if(StateVars.cardId != -1) {
         StateVars.checkBoxState = todoList[StateVars.cardId].state
@@ -100,7 +97,7 @@ private fun ShoppingRow(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            StateVars.textState = TextFieldValue(viewModel.toDoState[index].text)
+            StateVars.textState = TextFieldValue(viewModel.shoppingState[index].text)
             TextField(
                 value = textState,
                 onValueChange = {
@@ -114,7 +111,7 @@ private fun ShoppingRow(
                 onCheckedChange = {
                     StateVars.checkedState = it
                     viewModel.updateTodoState(index, it)
-                    print("Updated State: " + viewModel.toDoState[index].state)
+                    print("Updated State: " + viewModel.shoppingState[index].state)
                 }
             )
         }

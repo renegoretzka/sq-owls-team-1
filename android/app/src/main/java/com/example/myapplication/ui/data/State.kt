@@ -16,7 +16,8 @@ object StateVars {
     var editingMode by mutableStateOf(false)
     var textState by mutableStateOf(TextFieldValue(""))
     var checkedState by  mutableStateOf(false)
-
+    var registration by mutableStateOf(true)
+    var confirmationCodeTextFieldExpanded by mutableStateOf(true)
 }
 
 
