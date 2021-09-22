@@ -192,6 +192,10 @@ private fun AddNewDialog(viewModel: ToDoViewModel) {
             StateVars.openDialog = false
             StateVars.cardId = -1
             StateVars.editingMode = false
+            StateVars.openDialog = false
+            StateVars.text = ""
+            StateVars.checkBoxState = false
+            StateVars.editingMode = false
         },
         title = {
             Text(text = "Item name and amount")
