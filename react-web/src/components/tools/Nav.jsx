@@ -1,4 +1,5 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import useWindowDimensions from "./useWindowDimensions";
 
 const DestopNav = () => {
   return (
@@ -14,4 +15,13 @@ const MobileNav = () => {
   return <nav className="mobile-nav"></nav>;
 };
 
-export default DestopNav;
+const Nav = () => {
+  const dimensions = useWindowDimensions();
+  if (dimensions.width <= 480) {
+    return <MobileNav/>;
+  } else {
+    return <DestopNav/>;
+  }
+}
+
+export default Nav;

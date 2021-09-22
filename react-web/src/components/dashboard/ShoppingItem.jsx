@@ -7,7 +7,7 @@ const ShoppingItem = ({ item, mini }) => {
     setItem({ ...shoppingItem, count: shoppingItem.count + 1 });
 
   const decreaseCount = () => {
-    if (shoppingItem.count == 1) return;
+    if (shoppingItem.count === 1) return;
     setItem({ ...shoppingItem, count: shoppingItem.count - 1 });
   };
 

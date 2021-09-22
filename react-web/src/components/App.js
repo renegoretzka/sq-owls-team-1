@@ -1,5 +1,5 @@
 import "../App.css";
-import Nav from "./Nav";
+import Nav from "./tools/Nav";
 import DashBoard from "./dashboard";
 
 function App() {

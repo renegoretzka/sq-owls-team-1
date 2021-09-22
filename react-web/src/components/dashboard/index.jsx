@@ -26,7 +26,7 @@ const items = [
   },
 ];
 
-const DashBoard = () => {
+const DashBoard = () => { 
   return (
     <div className="dashboard">
       <TopBar />
@@ -40,7 +40,6 @@ const DashBoard = () => {
               <AiOutlineShoppingCart />
             </button>
           </div>
-
           <div className="list-title">My List</div>
           {items.map((item, index) => (
             <ShoppingItem key={index} item={item} />

@@ -284,3 +284,24 @@ body {
 }
 
 /* shopping item style ends here  */
+
+.footer-head {
+  height: 60px;
+  width: 100%;
+  display: block;
+  padding: 20px;
+}
+
+.footer {
+  height: 60px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: var(--primary);
+  border-top: 1px solid whitesmoke;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+}
+
+/* footer style ends here */
