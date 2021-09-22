@@ -309,6 +309,19 @@ body {
 
 /* footer style ends here */
 
+.signout {
+  margin-right: 0px;
+  background: var(--primary);
+  border-radius: 10px;
+  border: 0;
+  margin-right: 1em;
+  color: white;
+  font-size: 16px;
+  padding: 0.6em;
+  cursor: pointer;
+  font-weight: 500;
+}
+
 @media screen and (max-width: 700px) {
   .dash-main {
     grid-template-columns: 1fr;
@@ -326,17 +339,32 @@ body {
     padding: 0.5em;
   }
 
+  .signout {
+    margin-right: 0.5em;
+    font-size: 14px;
+    padding: 0.6em;
+  }
+
   .search-form input {
     width: 140px;
   }
 }
 
+@media screen and (max-width: 500px) {
+  .search-form input {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 400px) {
+  .signout {
+    margin-right: 0.5em;
+    font-size: 14px;
+    padding: 0.6em;
+  }
+
   .dashboard {
     padding: 1em;
-  }
-  .search-form input {
-    width: 100px;
   }
 
   .input-form {
