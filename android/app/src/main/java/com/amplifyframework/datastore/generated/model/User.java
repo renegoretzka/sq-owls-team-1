@@ -1,5 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
+import com.amplifyframework.core.model.annotations.BelongsTo;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
@@ -16,28 +17,29 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Todo type in your schema. */
+/** This is an auto generated class representing the User type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Todos")
-public final class Todo implements Model {
-  public static final QueryField ID = field("Todo", "id");
-  public static final QueryField NAME = field("Todo", "name");
-  public static final QueryField DESCRIPTION = field("Todo", "description");
+@ModelConfig(pluralName = "Users")
+@Index(name = "usersByList", fields = {"listID"})
+public final class User implements Model {
+  public static final QueryField ID = field("User", "id");
+  public static final QueryField USERNAME = field("User", "username");
+  public static final QueryField LIST = field("User", "listID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String name;
-  private final @ModelField(targetType="String") String description;
+  private final @ModelField(targetType="String") String username;
+  private final @ModelField(targetType="ShoppingList") @BelongsTo(targetName = "listID", type = ShoppingList.class) ShoppingList list;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
       return id;
   }
   
-  public String getName() {
-      return name;
+  public String getUsername() {
+      return username;
   }
   
-  public String getDescription() {
-      return description;
+  public ShoppingList getList() {
+      return list;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -48,10 +50,10 @@ public final class Todo implements Model {
       return updatedAt;
   }
   
-  private Todo(String id, String name, String description) {
+  private User(String id, String username, ShoppingList list) {
     this.id = id;
-    this.name = name;
-    this.description = description;
+    this.username = username;
+    this.list = list;
   }
   
   @Override
@@ -61,12 +63,12 @@ public final class Todo implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Todo todo = (Todo) obj;
-      return ObjectsCompat.equals(getId(), todo.getId()) &&
-              ObjectsCompat.equals(getName(), todo.getName()) &&
-              ObjectsCompat.equals(getDescription(), todo.getDescription()) &&
-              ObjectsCompat.equals(getCreatedAt(), todo.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), todo.getUpdatedAt());
+      User user = (User) obj;
+      return ObjectsCompat.equals(getId(), user.getId()) &&
+              ObjectsCompat.equals(getUsername(), user.getUsername()) &&
+              ObjectsCompat.equals(getList(), user.getList()) &&
+              ObjectsCompat.equals(getCreatedAt(), user.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), user.getUpdatedAt());
       }
   }
   
@@ -74,8 +76,8 @@ public final class Todo implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getName())
-      .append(getDescription())
+      .append(getUsername())
+      .append(getList())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -85,17 +87,17 @@ public final class Todo implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Todo {")
+      .append("User {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("name=" + String.valueOf(getName()) + ", ")
-      .append("description=" + String.valueOf(getDescription()) + ", ")
+      .append("username=" + String.valueOf(getUsername()) + ", ")
+      .append("list=" + String.valueOf(getList()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
   
-  public static NameStep builder() {
+  public static BuildStep builder() {
       return new Builder();
   }
   
@@ -108,7 +110,7 @@ public final class Todo implements Model {
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
    */
-  public static Todo justId(String id) {
+  public static User justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
     } catch (Exception exception) {
@@ -118,7 +120,7 @@ public final class Todo implements Model {
               "creating a new object, use the standard builder method and leave the ID field blank."
       );
     }
-    return new Todo(
+    return new User(
       id,
       null,
       null
@@ -127,45 +129,40 @@ public final class Todo implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      name,
-      description);
+      username,
+      list);
   }
-  public interface NameStep {
-    BuildStep name(String name);
-  }
-  
-
   public interface BuildStep {
-    Todo build();
+    User build();
     BuildStep id(String id) throws IllegalArgumentException;
-    BuildStep description(String description);
+    BuildStep username(String username);
+    BuildStep list(ShoppingList list);
   }
   
 
-  public static class Builder implements NameStep, BuildStep {
+  public static class Builder implements BuildStep {
     private String id;
-    private String name;
-    private String description;
+    private String username;
+    private ShoppingList list;
     @Override
-     public Todo build() {
+     public User build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Todo(
+        return new User(
           id,
-          name,
-          description);
+          username,
+          list);
     }
     
     @Override
-     public BuildStep name(String name) {
-        Objects.requireNonNull(name);
-        this.name = name;
+     public BuildStep username(String username) {
+        this.username = username;
         return this;
     }
     
     @Override
-     public BuildStep description(String description) {
-        this.description = description;
+     public BuildStep list(ShoppingList list) {
+        this.list = list;
         return this;
     }
     
@@ -181,20 +178,20 @@ public final class Todo implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String name, String description) {
+    private CopyOfBuilder(String id, String username, ShoppingList list) {
       super.id(id);
-      super.name(name)
-        .description(description);
+      super.username(username)
+        .list(list);
     }
     
     @Override
-     public CopyOfBuilder name(String name) {
-      return (CopyOfBuilder) super.name(name);
+     public CopyOfBuilder username(String username) {
+      return (CopyOfBuilder) super.username(username);
     }
     
     @Override
-     public CopyOfBuilder description(String description) {
-      return (CopyOfBuilder) super.description(description);
+     public CopyOfBuilder list(ShoppingList list) {
+      return (CopyOfBuilder) super.list(list);
     }
   }
   

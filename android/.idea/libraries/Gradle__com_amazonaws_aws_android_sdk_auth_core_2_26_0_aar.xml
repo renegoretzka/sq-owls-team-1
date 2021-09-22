@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amazonaws:aws-android-sdk-auth-core:2.26.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bed453cc943b1277608e4bb2a092b47d/transformed/jetified-aws-android-sdk-auth-core-2.26.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bed453cc943b1277608e4bb2a092b47d/transformed/jetified-aws-android-sdk-auth-core-2.26.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bed453cc943b1277608e4bb2a092b47d/transformed/jetified-aws-android-sdk-auth-core-2.26.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-auth-core/2.26.0/5204290f973f39cccffd6cdab4b01301b9a6dafd/aws-android-sdk-auth-core-2.26.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
