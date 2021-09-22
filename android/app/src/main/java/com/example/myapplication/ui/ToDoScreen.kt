@@ -108,11 +108,11 @@ private fun ShoppingRow(
                     viewModel.updateTodoText(index, it.text)
                 }
             )
-            val checkedState = remember { mutableStateOf(toDo.state) }
+             StateVars.checkedState = toDo.state
             Checkbox(
-                checked = checkedState.value,
+                checked = StateVars.checkedState,
                 onCheckedChange = {
-                    checkedState.value = it
+                    StateVars.checkedState = it
                     viewModel.updateTodoState(index, it)
                     print("Updated State: " + viewModel.toDoState[index].state)
                 }
@@ -127,50 +127,62 @@ private fun AddOrEditDialog(viewModel: ToDoViewModel) {
     if(StateVars.editingMode == false){
         AddNewDialog(viewModel)
     }else{
-        AlertDialog(
-            onDismissRequest = {
-                StateVars.openDialog = false
-                StateVars.cardId = -1
-                StateVars.editingMode = false
-            },
-            title = {
-                Text(text = "Item name and amount")
-            },
-            text = {
-                Column() {
-                    TextField(
-                        value = StateVars.text,
-                        onValueChange = {
-                            StateVars.text = it
-                            viewModel.updateTodoText(StateVars.cardId, it)}
-                    )
-                    Text("Bought")
-                    Checkbox(checked = StateVars.checkBoxState,
-                        onCheckedChange = { StateVars.checkBoxState = it }
-                    )
-                }
-            },
-            buttons = {
-                Row(
-                    modifier = Modifier.padding(all = 8.dp),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Button(
-                        modifier = Modifier.fillMaxWidth(),
-                        onClick = {
-                            StateVars.openDialog = false
-                            StateVars.text = ""
-                            StateVars.checkBoxState = false
-                            StateVars.editingMode = false
+        EditDialog(viewModel)
+    }
+}
 
-                        }
-                    ) {
-                        Text("Edit shopping item")
+
+
+
+@Composable
+private fun EditDialog(viewModel: ToDoViewModel) {
+    AlertDialog(
+        onDismissRequest = {
+            StateVars.openDialog = false
+            StateVars.cardId = -1
+            StateVars.editingMode = false
+        },
+        title = {
+            Text(text = "Item name and amount")
+        },
+        text = {
+            Column() {
+                TextField(
+                    value = StateVars.text,
+                    onValueChange = {
+                        StateVars.text = it
+                        viewModel.updateTodoText(StateVars.cardId, it)
                     }
+                )
+                Text("Bought")
+                Checkbox(checked = StateVars.checkBoxState,
+                    onCheckedChange = {
+                        StateVars.checkBoxState = it
+                        viewModel.updateTodoState(StateVars.cardId, it)
+                    }
+                )
+            }
+        },
+        buttons = {
+            Row(
+                modifier = Modifier.padding(all = 8.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = {
+                        StateVars.openDialog = false
+                        StateVars.text = ""
+                        StateVars.checkBoxState = false
+                        StateVars.editingMode = false
+
+                    }
+                ) {
+                    Text("Edit shopping item")
                 }
             }
-        )
-    }
+        }
+    )
 }
 
 @Composable
