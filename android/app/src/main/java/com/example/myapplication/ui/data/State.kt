@@ -14,6 +14,9 @@ object StateVars {
     var checkBoxState by mutableStateOf(false)
     var text by mutableStateOf("")
     var editingMode by mutableStateOf(false)
-    var textState by mutableStateOf(TextFieldValue("")) }
+    var textState by mutableStateOf(TextFieldValue(""))
+    var checkedState by  mutableStateOf(false)
+
+}
 
 
