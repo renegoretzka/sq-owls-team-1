@@ -1,6 +1,75 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    createUser(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      memberships {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    updateUser(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      memberships {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      memberships {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
 export const createMembership = /* GraphQL */ `
   mutation CreateMembership(
     $input: CreateMembershipInput!
@@ -10,28 +79,28 @@ export const createMembership = /* GraphQL */ `
       id
       userID
       listID
+      createdAt
+      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
       list {
         id
         name
+        createdAt
+        updatedAt
         users {
           nextToken
         }
         items {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-      user {
-        id
-        name
-        memberships {
-          nextToken
-        }
-        createdAt
-        updatedAt
       }
     }
   }
@@ -45,28 +114,28 @@ export const updateMembership = /* GraphQL */ `
       id
       userID
       listID
+      createdAt
+      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
       list {
         id
         name
+        createdAt
+        updatedAt
         users {
           nextToken
         }
         items {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-      user {
-        id
-        name
-        memberships {
-          nextToken
-        }
-        createdAt
-        updatedAt
       }
     }
   }
@@ -80,28 +149,28 @@ export const deleteMembership = /* GraphQL */ `
       id
       userID
       listID
+      createdAt
+      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
       list {
         id
         name
+        createdAt
+        updatedAt
         users {
           nextToken
         }
         items {
           nextToken
         }
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-      user {
-        id
-        name
-        memberships {
-          nextToken
-        }
-        createdAt
-        updatedAt
       }
     }
   }
@@ -114,6 +183,8 @@ export const createShoppingList = /* GraphQL */ `
     createShoppingList(input: $input, condition: $condition) {
       id
       name
+      createdAt
+      updatedAt
       users {
         items {
           id
@@ -135,8 +206,6 @@ export const createShoppingList = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -148,6 +217,8 @@ export const updateShoppingList = /* GraphQL */ `
     updateShoppingList(input: $input, condition: $condition) {
       id
       name
+      createdAt
+      updatedAt
       users {
         items {
           id
@@ -169,8 +240,6 @@ export const updateShoppingList = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -182,6 +251,8 @@ export const deleteShoppingList = /* GraphQL */ `
     deleteShoppingList(input: $input, condition: $condition) {
       id
       name
+      createdAt
+      updatedAt
       users {
         items {
           id
@@ -203,8 +274,6 @@ export const deleteShoppingList = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -248,75 +317,6 @@ export const deleteItem = /* GraphQL */ `
       name
       quantity
       listID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    createUser(input: $input, condition: $condition) {
-      id
-      name
-      memberships {
-        items {
-          id
-          userID
-          listID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    updateUser(input: $input, condition: $condition) {
-      id
-      name
-      memberships {
-        items {
-          id
-          userID
-          listID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    deleteUser(input: $input, condition: $condition) {
-      id
-      name
-      memberships {
-        items {
-          id
-          userID
-          listID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }

@@ -13,3 +13,35 @@ export const syncItems = /* GraphQL */ `
     }
   }
 `;
+export const syncMembership = /* GraphQL */ `
+  subscription SyncMembership($userID: ID!) {
+    syncMembership(userID: $userID) {
+      id
+      userID
+      listID
+      createdAt
+      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
+      list {
+        id
+        name
+        createdAt
+        updatedAt
+        users {
+          nextToken
+        }
+        items {
+          nextToken
+        }
+      }
+    }
+  }
+`;

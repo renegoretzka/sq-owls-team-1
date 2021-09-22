@@ -6,6 +6,8 @@ export const getUser = /* GraphQL */ `
     getUser(id: $id) {
       id
       name
+      createdAt
+      updatedAt
       memberships {
         items {
           id
@@ -16,8 +18,6 @@ export const getUser = /* GraphQL */ `
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;

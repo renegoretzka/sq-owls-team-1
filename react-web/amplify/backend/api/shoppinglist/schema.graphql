@@ -1,16 +1,24 @@
 type User
   @model(queries: { get: "getUser", list: null }, subscriptions: null)
-  @auth(rules: [{ allow: owner, ownerField: "id" }]) {
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "id", operations: [read, update] }
+      { allow: private, operations: [read] }
+      { allow: private, provider: iam }
+    ]
+  ) {
   id: ID!
   name: String
   memberships: [Membership]
     @connection(keyName: "membershipsByUser", fields: ["id"])
+    @auth(rules: [{ allow: owner, ownerField: "id" }])
 }
 
 type Membership
   @model(queries: null, subscriptions: null)
   @key(name: "membershipsByUser", fields: ["userID"])
-  @key(name: "membershipsByList", fields: ["listID"]) {
+  @key(name: "membershipsByList", fields: ["listID"])
+  @auth(rules: [{ allow: private }, { allow: private, provider: iam }]) {
   id: ID!
   userID: ID!
   user: User @connection(fields: ["userID"])
@@ -18,7 +26,9 @@ type Membership
   list: ShoppingList @connection(fields: ["listID"])
 }
 
-type ShoppingList @model(queries: null, subscriptions: null) {
+type ShoppingList
+  @model(queries: null, subscriptions: null)
+  @auth(rules: [{ allow: private }, { allow: private, provider: iam }]) {
   id: ID!
   name: String
   users: [Membership] @connection(keyName: "membershipsByList", fields: ["id"])
@@ -27,7 +37,8 @@ type ShoppingList @model(queries: null, subscriptions: null) {
 
 type Item
   @model(queries: null, subscriptions: null)
-  @key(name: "itemsByList", fields: ["listID"]) {
+  @key(name: "itemsByList", fields: ["listID"])
+  @auth(rules: [{ allow: private }, { allow: private, provider: iam }]) {
   id: ID!
   name: String!
   quantity: String
@@ -37,4 +48,6 @@ type Item
 type Subscription {
   syncItems(listID: ID!): Item
     @aws_subscribe(mutations: ["createItem", "updateItem"])
+  syncMembership(userID: ID!): Membership
+    @aws_subscribe(mutations: ["createMembership", "deleteMembership"])
 }
