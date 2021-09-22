@@ -28,6 +28,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
+  padding-bottom: 0;
 }
 
 .logo {
@@ -58,6 +59,7 @@ body {
   flex-direction: column;
   padding: 1em 2em;
   overflow-y: scroll;
+  border-radius: 40px 40px 0 0;
 }
 
 .dashboard::-webkit-scrollbar {
@@ -67,7 +69,6 @@ body {
 .top-bar {
   height: 2em;
   margin-bottom: 1em;
-  padding: 0.5em;
   border-radius: 10px;
   display: flex;
   padding: 0em 2em;
@@ -128,6 +129,7 @@ body {
   background-color: whitesmoke;
   padding: 1em;
   border-radius: 10px;
+  min-width: 220px;
 }
 
 /* banner style starts here  */
@@ -240,10 +242,11 @@ body {
 .item-name {
   font-size: 18px;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .item-count {
-  padding: 0 1em;
+  padding: 0 1em 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,3 +308,57 @@ body {
 }
 
 /* footer style ends here */
+
+@media screen and (max-width: 700px) {
+  .dash-main {
+    grid-template-columns: 1fr;
+  }
+
+  .banner {
+    height: 180px;
+  }
+
+  .dash-main .left {
+    padding: 0;
+  }
+
+  .top-bar {
+    padding: 0.5em;
+  }
+
+  .search-form input {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .dashboard {
+    padding: 1em;
+  }
+  .search-form input {
+    width: 100px;
+  }
+
+  .input-form {
+    margin: 1.5em 0;
+    height: 42px;
+  }
+
+  .input-form input {
+    font-size: 16px;
+    width: 100px;
+  }
+
+  .item-main {
+    margin-left: 1em;
+  }
+
+  .item-name {
+    font-size: 16px;
+  }
+  .item-icon {
+    width: 40px;
+    padding: 0.1em;
+    font-size: 35px;
+  }
+}
