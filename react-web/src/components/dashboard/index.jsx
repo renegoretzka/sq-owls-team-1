@@ -26,7 +26,7 @@ const items = [
   },
 ];
 
-const DashBoard = () => { 
+const DashBoard = () => {
   return (
     <div className="dashboard">
       <TopBar />
@@ -35,7 +35,7 @@ const DashBoard = () => {
           <Banner />
 
           <div className="input-form">
-            <input type="text" placeholder="What do you want to buy ?" />
+            <input type="text" placeholder="Add items" />
             <button>
               <AiOutlineShoppingCart />
             </button>

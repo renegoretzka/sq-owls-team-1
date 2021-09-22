@@ -17,11 +17,11 @@ const MobileNav = () => {
 
 const Nav = () => {
   const dimensions = useWindowDimensions();
-  if (dimensions.width <= 480) {
-    return <MobileNav/>;
+  if (dimensions.width <= 760) {
+    return <MobileNav />;
   } else {
-    return <DestopNav/>;
+    return <DestopNav />;
   }
-}
+};
 
 export default Nav;
