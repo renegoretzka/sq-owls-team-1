@@ -1,6 +1,7 @@
 package com.example.myapplication.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -14,9 +15,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myapplication.ui.data.StateVars
+import com.example.myapplication.ui.data.Todo
 import com.example.myapplication.ui.viewModel.ToDoViewModel
 
 
@@ -25,7 +29,21 @@ fun ToDoScreen() {
     val openDialog = remember { mutableStateOf(false) }
     val viewModel: ToDoViewModel = viewModel()
     val todoList = viewModel.toDoState
+    //val cardId = remember{ mutableStateOf(-1)}
     val checkBoxState = remember { mutableStateOf(false) }
+    var text by remember { mutableStateOf("") }
+    val editingMode = remember { mutableStateOf(false)}
+
+
+
+
+    if(StateVars.cardId != -1) {
+        checkBoxState.value = todoList[StateVars.cardId].state
+        text= todoList[StateVars.cardId].text
+        openDialog.value = true
+    }else{
+
+    }
 
     Scaffold(topBar = {},
         floatingActionButton = {
@@ -48,9 +66,17 @@ fun ToDoScreen() {
                 for ((index,toDo) in todoList.withIndex()) {
                     Card(
                         backgroundColor = Color.White,
-                        modifier = Modifier.padding(6.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(6.dp)
+                            .pointerInput(Unit) {
+                                detectTapGestures(
+                                    onLongPress = {
+                                        StateVars.cardId = index
+                                    }
+                                )
+                            }
                     ) {
-
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Center
@@ -74,14 +100,13 @@ fun ToDoScreen() {
                             )
                         }
 
-
                     }
                 }
-                var text by remember { mutableStateOf("") }
                 if (openDialog.value) {
                     AlertDialog(
                         onDismissRequest = {
                             openDialog.value = false
+                            StateVars.cardId = -1
                         },
                         title = {
                             Text(text = "Item name amd amount")
@@ -121,84 +146,3 @@ fun ToDoScreen() {
             }
         })
 }
-
-//@Composable
-//fun CheckBoxElement(stateOfAddedItem:Boolean) {
-//
-//}
-//@Composable
-//private fun ShoppingRow() {
-//    Card(
-//        backgroundColor = Color.White,
-//        modifier = Modifier.padding(6.dp)
-//    ) {
-//        val openDialog = remember { mutableStateOf(false) }
-//        Row(
-//            verticalAlignment = Alignment.CenterVertically,
-//            horizontalArrangement = Arrangement.Center
-//        ) {
-//            val textState = remember { mutableStateOf(TextFieldValue("")) }
-//            TextField(
-//                value = textState.value,
-//                onValueChange = {
-//                    textState.value = it
-//                    //viewModel.updateField(field, textState.value.text)
-//                }
-//            )
-//            CheckBoxElement()
-//        }
-//        var text by remember { mutableStateOf("") }
-//
-//        if (openDialog.value) {
-//            AlertDialog(
-//                onDismissRequest = {
-//                    openDialog.value = false
-//                },
-//                title = {
-//                    Text(text = "Title")
-//                },
-//                text = {
-//                    Column() {
-//                        TextField(
-//                            value = text,
-//                            onValueChange = { text = it }
-//                        )
-//                        Text("Custom Text")
-//                        Checkbox(checked = false, onCheckedChange = {})
-//                    }
-//                },
-//                buttons = {
-//                    Row(
-//                        modifier = Modifier.padding(all = 8.dp),
-//                        horizontalArrangement = Arrangement.Center
-//                    ) {
-//                        Button(
-//                            modifier = Modifier.fillMaxWidth(),
-//                            onClick = { openDialog.value = false }
-//                        ) {
-//                            Text("Dismiss")
-//                        }
-//                    }
-//                }
-//            )
-//        }
-//
-//    }
-//}
-
-
-
-//@Composable
-//fun ExtendedFloatingActionButtonElement() {
-//    ExtendedFloatingActionButton(
-//        icon = { Icon(Icons.Filled.Add, "") },
-//        text = { Text("Add") },
-//        onClick = { },
-//        elevation = FloatingActionButtonDefaults.elevation(8.dp)
-//    )
-//}
-//
-//@Composable
-//fun CustomDialog(openDialog: Boolean) {
-//
-//}

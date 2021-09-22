@@ -9,7 +9,6 @@ class ToDoViewModel(): ViewModel() {
 
     val toDoState = mutableStateListOf<Todo>()
 
-
     fun addTodo(text: String, state: Boolean){
         toDoState.add(Todo(text=text,state = state))
     }
