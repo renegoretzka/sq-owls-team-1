@@ -324,6 +324,34 @@ body {
 
 /* footer style ends here */
 
+.item-form {
+  width: 100%;
+  position:relative;
+  margin: 0.8em 0;
+  display: flex;
+  background: #efefefa1;
+  opacity: 1;
+  border-radius: 10px;
+  padding: 0.4em;
+  box-sizing: border-box;
+}
+
+/* form popup style ends here */
+
+.alert {
+  width: 100%;
+  position:relative;
+  margin: 0.8em 0;
+  display: flex;
+  background-color: var(--primary);
+  opacity: 1;
+  border-radius: 10px;
+  padding: 0.4em;
+  box-sizing: border-box;
+}
+
+/* alert style ends here */
+
 .signout {
   margin-right: 0px;
   background: var(--primary);
