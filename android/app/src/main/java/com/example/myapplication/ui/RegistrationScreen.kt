@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.amplifyframework.auth.AuthException
 import com.amplifyframework.auth.AuthUserAttributeKey
 import com.amplifyframework.auth.options.AuthSignUpOptions
@@ -28,7 +29,7 @@ import com.example.myapplication.ui.data.StateVars
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun RegistrationScreen() {
+fun RegistrationScreen(navHostController: NavHostController) {
     var confirmationCodeTextField = remember { mutableStateOf(TextFieldValue("")) }
     var phoneNumberTextField = remember { mutableStateOf(TextFieldValue("")) }
     var passwordTextField = remember { mutableStateOf(TextFieldValue("")) }
@@ -52,7 +53,7 @@ fun RegistrationScreen() {
             }
         )
         Spacer(modifier = Modifier.padding(5.dp))
-        enterAppButton(confirmationCodeTextField, phoneNumberTextField, passwordTextField)
+        enterAppButton(confirmationCodeTextField, phoneNumberTextField, passwordTextField, navHostController)
         Spacer(modifier = Modifier.padding(15.dp))
         AnimatedVisibility(visible = true) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -74,6 +75,7 @@ fun RegistrationScreen() {
                     !StateVars.confirmationCodeTextFieldExpanded
             }) {
                 Text(text = "Switch to log in")
+                StateVars.registration = false
             }
         } else {
             OutlinedButton(onClick = {
@@ -81,6 +83,7 @@ fun RegistrationScreen() {
                     !StateVars.confirmationCodeTextFieldExpanded
             }) {
                 Text(text = "Switch to registration")
+                StateVars.registration = true
             }
         }
 
@@ -92,7 +95,8 @@ fun RegistrationScreen() {
 private fun enterAppButton(
     confirmationCodeTextField: MutableState<TextFieldValue>,
     phoneNumberTextField: MutableState<TextFieldValue>,
-    passwordTextField: MutableState<TextFieldValue>
+    passwordTextField: MutableState<TextFieldValue>,
+    navHostController: NavHostController
 ) {
 
     if (StateVars.registration) {
@@ -108,21 +112,23 @@ private fun enterAppButton(
                     phoneNumber = phoneNumberTextField.value.text,
                     confirmationCode = confirmationCodeTextField.value.text
                 )
+                navHostController.navigate("item_list")
             }
 
         }) {
             Text(text = "Enter application")
         }
     } else {
-
         Button(onClick = {
             if (confirmationCodeTextField.value.text == "") {
                 signIn(
                     userName = phoneNumberTextField.value.text,
                     password = passwordTextField.value.text
                 )
+                navHostController.navigate("item_list")
             } else {
                 confirmSignIn(confirmationCode = confirmationCodeTextField.value.text)
+                navHostController.navigate("item_list")
             }
 
         }) {
