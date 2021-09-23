@@ -1,10 +1,10 @@
 package com.example.myapplication.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -28,13 +28,13 @@ import com.example.myapplication.ui.viewModel.ShoppingViewModel
 fun ShoppingScreen() {
 
     val viewModel: ShoppingViewModel = viewModel()
-    val todoList = viewModel.shoppingState
+    val shoppingList = viewModel.shoppingState
 
     if(StateVars.cardId != -1) {
-        StateVars.checkBox = todoList[StateVars.cardId].state
-        StateVars.text= todoList[StateVars.cardId].text
+        StateVars.checkBox = shoppingList[StateVars.cardId].state
+        StateVars.text= shoppingList[StateVars.cardId].text
         StateVars.openDialog = true
-        StateVars.amount = todoList[StateVars.cardId].amount
+        StateVars.amount = shoppingList[StateVars.cardId].amount
     }else{
         StateVars.checkBox = false
         StateVars.text= ""
@@ -53,29 +53,36 @@ fun ShoppingScreen() {
         },
 
         content = {
-            ShoppingListSection(todoList, viewModel)
+            ShoppingListSection(shoppingList, viewModel)
         })
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun ShoppingListSection(
     todoList: SnapshotStateList<Todo>,
     viewModel: ShoppingViewModel
 ) {
-    Column(
-        modifier = Modifier
-            .background(Color.White)
-            .verticalScroll(rememberScrollState())
-            .padding(start = 45.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        for ((index, toDo) in todoList.withIndex()) {
-            ShoppingRow(index, viewModel, toDo)
+//    Column(
+//        modifier = Modifier
+//            .background(Color.White)
+//            .verticalScroll(rememberScrollState())
+//            .padding(start = 45.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        for ((index, toDo) in todoList.withIndex()) {
+//            ShoppingRow(index, viewModel, toDo)
+//        }
+        LazyColumn(modifier = Modifier.fillMaxSize()){
+            itemsIndexed(todoList){index, toDo ->
+                    ShoppingRow(index = index, viewModel = viewModel , toDo = toDo)
+
+            }
         }
         if (StateVars.openDialog) {
             AddOrEditDialog(viewModel)
         }
-    }
+
 }
 
 @Composable
@@ -109,14 +116,18 @@ private fun ShoppingRow(
                     textState = it
                     viewModel.updateShoppingText(index, it.text)
                 },
-                modifier = Modifier.width(200.dp).height(60.dp)
+                modifier = Modifier
+                    .width(200.dp)
+                    .height(60.dp)
             )
             Spacer(modifier = Modifier.width(16.dp))
             StateVars.amountState = TextFieldValue(viewModel.shoppingState[index].amount)
             TextField(value = amountState, onValueChange ={
                 amountState = it
                 viewModel.updateShoppingAmount(index,it.text)
-            },modifier = Modifier.width(50.dp).height(60.dp))
+            },modifier = Modifier
+                .width(50.dp)
+                .height(60.dp))
 
 
              StateVars.checkedState = toDo.state
