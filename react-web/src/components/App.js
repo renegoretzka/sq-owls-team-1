@@ -21,7 +21,9 @@ function App() {
   const [refresh, setRefresh] = useState(false);
   const [currentListId, setCurrentListId] = useState(null);
 
-  const currentList = lists.find((list) => list.id === currentListId);
+  const currentList = lists.find((list) => list.list.id === currentListId);
+
+  console.log(currentList, "currentList", currentListId, lists);
 
   const fetchUser = async () => {
     const { attributes } = await Auth.currentUserInfo();
@@ -92,7 +94,7 @@ function App() {
         setCurrentListId={setCurrentListId}
         currentListId={currentListId}
       />
-      <DashBoard />
+      <DashBoard currentList={currentList} />
     </div>
   );
 }
