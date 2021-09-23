@@ -18,7 +18,7 @@ Shopping was and will always be the part of our daily routine. Sometimes we have
 
 
 # Architecture description ⚙️
-### Log in 
+### Log in :desktop_computer:
 
  The `Amazon Cognito` was used to implement authentication and authorization. All the users and their encrypted passwords are stored in the  database
 
