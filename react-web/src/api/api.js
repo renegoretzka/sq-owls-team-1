@@ -6,6 +6,12 @@ import {
   createItem as createItemMutation,
   updateItem as updateItemMutation,
   deleteItem as deleteItemMutation,
+  createMembership as createMembershipMutation,
+  updateMembership as updateMembershipMutation,
+  deleteMembership as deleteMembershipMutation,
+  createShoppingList as createShoppingListMutation,
+  updateShoppingList as updateShoppingListMutation,
+  deleteShoppingList as deleteShoppingListMutation,
 } from "../graphql/mutations";
 
 export async function getUser() {
@@ -61,3 +67,55 @@ export async function deleteItem(id) {
     variables: { input: { id } },
   });
 }
+
+/* End of item API */
+
+export async function createMembership(newMutation) {
+  // clean data
+  await API.graphql({
+    query: createMembershipMutation,
+    variables: { input: newMutation },
+  });
+}
+
+export async function updateMembership(newMutation) {
+  // clean data
+  await API.graphql({
+    query: updateMembershipMutation,
+    variables: { input: newMutation },
+  });
+}
+
+export async function deleteMembership(id) {
+  await API.graphql({
+    query: deleteMembershipMutation,
+    variables: { input: { id } },
+  });
+}
+
+/* End of membership API */
+
+export async function createShoppingList(newShoppingList) {
+  // clean data
+  await API.graphql({
+    query: createShoppingListMutation,
+    variables: { input: newMutation },
+  });
+}
+
+export async function updateShoppingList(newShoppingList) {
+  // clean data
+  await API.graphql({
+    query: updateShoppingListMutation,
+    variables: { input: newShoppingList },
+  });
+}
+
+export async function deleteShoppingList(id) {
+  await API.graphql({
+    query: deleteShoppingListMutation,
+    variables: { input: { id } },
+  });
+}
+
+/* End of list API */
