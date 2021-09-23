@@ -86,10 +86,6 @@ const DashBoard = ({
         </div>
 
         <aside className="right">
-          <div className="list-title">Members</div>
-          {[1, 2, 3].map((item, index) => (
-            <UserItem key={index} />
-          ))}
           <div className="list-title">Recent Items</div>
           {listItems
             .filter((item) => item.status === "INACTIVE")
@@ -102,6 +98,15 @@ const DashBoard = ({
                 mini={true}
               />
             ))}
+          <br />
+          <br />
+          <div className="list-title">who else can see this list</div>
+          {["Father", "Mother"].map((username, index) => (
+            <UserItem username={username} key={index} />
+          ))}
+          <button className="add-user">
+            <span>+</span> Add someone else
+          </button>
         </aside>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { BsCheckAll } from "react-icons/bs";
+import { AiTwotoneCheckSquare } from "react-icons/ai";
 
-const ShoppingItem = ({ item, mini, handleDeactivate }) => {
+const ShoppingItem = ({ item, handleDeactivate }) => {
   return (
     <div className="shopping-item">
       <div className="item-icon">{item.name[0]}</div>
@@ -8,15 +10,18 @@ const ShoppingItem = ({ item, mini, handleDeactivate }) => {
         <div className="item-name">{item.name}</div>
         <div className="item-price">{`${item.quantity}`}</div>
       </div>
+      <div className="item-count">
+        {item.status === "ACTIVE" ? (
+          <AiTwotoneCheckSquare
+            className="active"
+            onClick={() => handleDeactivate(item.id)}
+          />
+        ) : (
+          <BsCheckAll onClick={() => handleDeactivate(item.id)} />
+        )}
 
-      {!mini && (
-        <div className="item-count">
-          <button onClick={() => handleDeactivate(item.id)} className="btn2">
-            -
-          </button>
-          <div className="count">{item.count}</div>
-        </div>
-      )}
+        <div className="count">{item.count}</div>
+      </div>
     </div>
   );
 };
