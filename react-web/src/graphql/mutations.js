@@ -200,9 +200,10 @@ export const createShoppingList = /* GraphQL */ `
           id
           name
           quantity
+          status
           listID
-          createdAt
           updatedAt
+          createdAt
         }
         nextToken
       }
@@ -234,9 +235,10 @@ export const updateShoppingList = /* GraphQL */ `
           id
           name
           quantity
+          status
           listID
-          createdAt
           updatedAt
+          createdAt
         }
         nextToken
       }
@@ -268,9 +270,10 @@ export const deleteShoppingList = /* GraphQL */ `
           id
           name
           quantity
+          status
           listID
-          createdAt
           updatedAt
+          createdAt
         }
         nextToken
       }
@@ -286,9 +289,10 @@ export const createItem = /* GraphQL */ `
       id
       name
       quantity
+      status
       listID
-      createdAt
       updatedAt
+      createdAt
     }
   }
 `;
@@ -301,9 +305,10 @@ export const updateItem = /* GraphQL */ `
       id
       name
       quantity
+      status
       listID
-      createdAt
       updatedAt
+      createdAt
     }
   }
 `;
@@ -316,9 +321,10 @@ export const deleteItem = /* GraphQL */ `
       id
       name
       quantity
+      status
       listID
-      createdAt
       updatedAt
+      createdAt
     }
   }
 `;

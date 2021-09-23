@@ -182,7 +182,6 @@ Parameters:
   dependsOn:
     Type: CommaDelimitedList
       
-            
   authTriggerConnections:
     Type: String
   
@@ -191,6 +190,7 @@ Parameters:
   authProviders:
     Type: CommaDelimitedList
       
+            
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
   
@@ -252,12 +252,11 @@ Resources:
       
       
       
-      AutoVerifiedAttributes
-        - email
+      AutoVerifiedAttributes:
       
-
-      EmailVerificationMessage: !Ref emailVerificationMessage
-      EmailVerificationSubject: !Ref emailVerificationSubject
+        - phone_number
+      
+      
       
       Policies:
         PasswordPolicy:
