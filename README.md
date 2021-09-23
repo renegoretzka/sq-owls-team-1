@@ -31,6 +31,12 @@ Firstly we have created the sketch of our design for mobile view and extended it
 ### Architecture
 ![Untitled_Diagram drawio_1](https://user-images.githubusercontent.com/57729718/134559332-bb81b704-a3ea-48e5-8091-a184d878864f.png)
 
+In the DB we store the following data (tables):
+- Items
+- ItemStatuses
+- ShoppingLists
+- Users
+
 
 
 
