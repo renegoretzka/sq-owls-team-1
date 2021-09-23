@@ -1,45 +1,47 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const syncItems = /* GraphQL */ `
+  subscription SyncItems($listID: ID!) {
+    syncItems(listID: $listID) {
       id
       name
-      description
-      _version
-      _deleted
-      _lastChangedAt
+      quantity
+      listID
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const syncMembership = /* GraphQL */ `
+  subscription SyncMembership($userID: ID!) {
+    syncMembership(userID: $userID) {
       id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
+      userID
+      listID
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
+      list {
+        id
+        name
+        createdAt
+        updatedAt
+        users {
+          nextToken
+        }
+        items {
+          nextToken
+        }
+      }
     }
   }
 `;

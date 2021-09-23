@@ -4,7 +4,7 @@
     "resourceNameTruncated": "shoppia4ad7ac6",
     "userPoolName": "shoppinglistUserPool",
     "autoVerifiedAttributes": [
-        "phone_number"
+        "email"
     ],
     "mfaConfiguration": "OPTIONAL",
     "mfaTypes": [
@@ -53,7 +53,7 @@
     ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "triggers": "{}",
+    "triggers": "{\n  \"PostConfirmation\": [\n    \"custom\"\n  ]\n}",
     "hostedUI": false,
     "userPoolGroupList": [],
     "serviceName": "Cognito",
@@ -63,5 +63,18 @@
     },
     "breakCircularDependency": true,
     "permissions": [],
-    "dependsOn": []
+
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "shoppinglistPostConfirmation",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ],
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"shoppinglistPostConfirmation\"\n  }\n]",
+    "authProviders": []
 }

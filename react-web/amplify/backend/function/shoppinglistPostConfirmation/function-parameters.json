@@ -1,0 +1,24 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "shoppinglist",
+  "functionName": "shoppinglistPostConfirmation",
+  "resourceName": "shoppinglistPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "C:\\Users\\Rene\\AppData\\Roaming\\nvm\\v12.19.0\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "shoppinglistPostConfirmation",
+  "skipEdit": true,
+  "enableCors": false,
+  "permissions": {
+    "api": {
+      "shoppinglist": [
+        "Mutation"
+      ]
+    }
+  }
+}

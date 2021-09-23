@@ -10,6 +10,18 @@ Parameters:
     Type: String
 
   
+  
+  
+  functionshoppinglistPostConfirmationArn:
+    Type: String
+    Default: functionshoppinglistPostConfirmationArn
+  
+  functionshoppinglistPostConfirmationName:
+    Type: String
+    Default: functionshoppinglistPostConfirmationName
+  
+  
+  
 
     
   identityPoolName:
@@ -146,7 +158,6 @@ Parameters:
   userPoolGroupList:
     Type: CommaDelimitedList
       
-            
   serviceName:
     Type: String
   
@@ -169,6 +180,15 @@ Parameters:
       
         
   dependsOn:
+    Type: CommaDelimitedList
+      
+            
+  authTriggerConnections:
+    Type: String
+  
+            
+        
+  authProviders:
     Type: CommaDelimitedList
       
 Conditions:
@@ -232,11 +252,12 @@ Resources:
       
       
       
-      AutoVerifiedAttributes:
+      AutoVerifiedAttributes
+        - email
       
-        - phone_number
-      
-      
+
+      EmailVerificationMessage: !Ref emailVerificationMessage
+      EmailVerificationSubject: !Ref emailVerificationSubject
       
       Policies:
         PasswordPolicy:
