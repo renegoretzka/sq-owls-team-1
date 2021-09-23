@@ -22,6 +22,7 @@ const getUser = /* GraphQL */ `
                 quantity
                 id
                 updatedAt
+                status
               }
             }
           }

@@ -1,11 +1,24 @@
 const createItem = /* GraphQL */ `
-  mutation createItem($name: String!, $quantity: String, $listID: ID!) {
-    createItem(input: { name: $name, quantity: $quantity, listID: $listID }) {
+  mutation createItem(
+    $name: String!
+    $quantity: String
+    $listID: ID!
+    $status: ItemStatusEnum
+  ) {
+    createItem(
+      input: {
+        name: $name
+        quantity: $quantity
+        listID: $listID
+        status: $status
+      }
+    ) {
       id
       name
       quantity
       listID
       updatedAt
+      status
     }
   }
 `;
@@ -49,9 +62,30 @@ const createMembership = /* GraphQL */ `
   }
 `;
 
+const updateItem = /* GraphQL */ `
+  mutation updateItem(
+    $id: ID!
+    $name: String
+    $quantity: String
+    $status: ItemStatusEnum
+  ) {
+    updateItem(
+      input: { id: $id, name: $name, quantity: $quantity, status: $status }
+    ) {
+      id
+      name
+      quantity
+      listID
+      status
+      updatedAt
+    }
+  }
+`;
+
 export {
   createItem,
   createMembership,
   createMembershipNewList,
   createShoppingList,
+  updateItem,
 };

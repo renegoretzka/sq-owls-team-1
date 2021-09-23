@@ -4,6 +4,7 @@ import TopBar from "./TopBar";
 import Banner from "./DashBoardBanner";
 import AddListModal from "./AddListModal";
 import { useState } from "react";
+import UserItem from "./userItem";
 
 const items = [
   {
@@ -34,6 +35,7 @@ const DashBoard = ({
   setModalVisible,
   createNewList,
   createNewItem,
+  handleDeactivate,
 }) => {
   const listItems = currentList?.list.items.items || [];
   const listName = currentList?.list.name || "";
@@ -54,6 +56,7 @@ const DashBoard = ({
           createNewList={createNewList}
         />
       )}
+
       <TopBar />
       <div className="dash-main">
         <div className="left">
@@ -71,21 +74,34 @@ const DashBoard = ({
             </button>
           </div>
           <div className="list-title">{listName}</div>
-          {listItems.map((item) => (
-            <ShoppingItem key={item.id} item={item} />
-          ))}
+          {listItems
+            .filter((item) => item.status === "ACTIVE")
+            .map((item) => (
+              <ShoppingItem
+                handleDeactivate={handleDeactivate}
+                key={item.id}
+                item={item}
+              />
+            ))}
         </div>
 
         <aside className="right">
+          <div className="list-title">Members</div>
+          {[1, 2, 3].map((item, index) => (
+            <UserItem key={index} />
+          ))}
           <div className="list-title">Recent Items</div>
-          {items.slice(0, 3).map((item, index) => (
-            <ShoppingItem key={index} item={item} mini={true} />
-          ))}
-
-          <div className="list-title">Most Frequent</div>
-          {items.slice(0, 2).map((item, index) => (
-            <ShoppingItem key={index} item={item} mini={true} />
-          ))}
+          {listItems
+            .filter((item) => item.status === "INACTIVE")
+            .slice(0, 5)
+            .map((item, index) => (
+              <ShoppingItem
+                handleDeactivate={handleDeactivate}
+                key={index}
+                item={item}
+                mini={true}
+              />
+            ))}
         </aside>
       </div>
     </div>

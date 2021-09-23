@@ -11,6 +11,7 @@ import {
   createItem,
   createMembership,
   createShoppingList,
+  updateItem,
 } from "../graphql/custom/mutations";
 import { syncItems } from "../graphql/custom/subscription";
 
@@ -46,26 +47,46 @@ function App() {
   };
 
   const subscribeToList = () => {
-    let subscription = null;
     if (!user) return;
-    console.log("Subscribing to syncItems");
-    subscription = API.graphql({
-      query: syncItems,
-      variables: { listID: user.memberships.items[0].list.id },
-    }).subscribe({
-      next: ({ value }) => {
-        console.log(value.data.syncItems);
-      },
-      error: (error) => setRefresh(!refresh),
-    });
+    if (lists.length < 1) return;
+    let subscriptions = [];
+
+    for (let i = 0; i < lists.length; i++) {
+      const listId = lists[i].list.id;
+
+      subscriptions[i] = API.graphql({
+        query: syncItems,
+        variables: { listID: listId },
+      }).subscribe({
+        next: ({ value }) => {
+          let subscribedList = {
+            ...lists.find((list) => list.list.id === listId),
+          };
+
+          subscribedList.list.items.items.push(value.data.syncItems);
+
+          const newLists = [
+            subscribedList,
+            ...lists.filter((list) => list.list.id !== listId),
+          ];
+
+          setList(newLists);
+        },
+        error: (error) => setRefresh(!refresh),
+      });
+    }
+
     return () => {
-      if (subscription) {
-        subscription.unsubscribe();
+      for (let i = 0; i < lists.length; i++) {
+        let subscription = subscriptions[i];
+        if (subscription) {
+          subscription.unsubscribe();
+        }
       }
     };
   };
 
-  useEffect(fetchUser, []);
+  useEffect(subscribeToList, [user, lists]);
 
   useEffect(() => {
     if (lists === []) return;
@@ -75,13 +96,11 @@ function App() {
         (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
       );
     setCurrentList(currentList);
-    console.log("currentList", currentList);
   }, [currentListId, lists]);
 
-  // useEffect(subscribeToList, [refresh, user]);
+  useEffect(fetchUser, []);
 
   const createNewList = async (newListName) => {
-    console.log(newListName);
     if (!user) return;
     try {
       let shopResult = await API.graphql({
@@ -116,6 +135,7 @@ function App() {
           name: newLItemName,
           quantity: "2KG",
           listID: currentListId,
+          status: "ACTIVE",
         },
       });
 
@@ -136,6 +156,34 @@ function App() {
     }
   };
 
+  const handleDeactivate = async (itemId) => {
+    try {
+      let currentList = {
+        ...lists.find((list) => list.list.id === currentListId),
+      };
+
+      let currentItem = currentList.list.items.items.find(
+        (item) => item.id === itemId
+      );
+
+      await API.graphql({
+        query: updateItem,
+        variables: { ...currentItem, status: "INACTIVE" },
+      });
+
+      currentItem.status = "INACTIVE";
+
+      const newList = [
+        currentList,
+        ...lists.filter((list) => list.list.id !== currentListId),
+      ];
+
+      setList(newList);
+    } catch (e) {
+      console.log("error while handling deactivate", e);
+    }
+  };
+
   return (
     <div className="App">
       <Nav
@@ -150,6 +198,7 @@ function App() {
         setModalVisible={setModalVisible}
         createNewList={createNewList}
         createNewItem={createNewItem}
+        handleDeactivate={handleDeactivate}
       />
     </div>
   );

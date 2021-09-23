@@ -13,6 +13,7 @@ const DestopNav = ({
       <div className="logo">
         <AiOutlineShoppingCart />
       </div>
+      
       <div className="list-title">My Lists</div>
 
       {lists?.map((list) => {
