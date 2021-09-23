@@ -29,5 +29,8 @@ Firstly we have created the sketch of our design for mobile view and extended it
 `AWS Amplify`  is a set of tools and services that can be used together or on their own, to help front-end web and mobile developers build scalable full stack applications, powered by AWS. It is available for a lot of platforms, including React and Android. Amazon DynamoDB is a database behind the webserver and GraphQL was used as a query language for communication
 
 ### Architecture
-![Screen Shot 2021-09-08 at 10 08 00](https://user-images.githubusercontent.com/57729718/134558227-50c43c19-356d-4261-80d9-25d554c831d2.png)
+![Untitled_Diagram drawio_1](https://user-images.githubusercontent.com/57729718/134559332-bb81b704-a3ea-48e5-8091-a184d878864f.png)
+
+
+
 
