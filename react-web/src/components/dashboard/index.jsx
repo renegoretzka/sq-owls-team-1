@@ -6,29 +6,6 @@ import AddListModal from "./AddListModal";
 import { useState } from "react";
 import UserItem from "./userItem";
 
-const items = [
-  {
-    name: "Banana",
-    prize: "2.99",
-    count: 1,
-  },
-  {
-    name: "Loaf of bread",
-    prize: "1.99",
-    count: 2,
-  },
-  {
-    name: "Tin of milk",
-    prize: "40",
-    count: 1,
-  },
-  {
-    name: "Cooking gas",
-    prize: "85",
-    count: 3,
-  },
-];
-
 const DashBoard = ({
   currentList,
   modalVisible,

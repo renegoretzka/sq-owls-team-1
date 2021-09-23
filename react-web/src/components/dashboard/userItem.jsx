@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const UserItem = ({ username }) => {
   return (
     <div className="user-item">

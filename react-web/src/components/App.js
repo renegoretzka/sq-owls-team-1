@@ -4,7 +4,7 @@ import DashBoard from "./dashboard";
 import { Auth, API } from "aws-amplify";
 import Amplify from "aws-amplify";
 import awsExports from "../aws-exports";
-import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import { getUser } from "../graphql/custom/user.queries";
 import {
