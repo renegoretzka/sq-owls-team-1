@@ -37,12 +37,19 @@ type ShoppingList
 
 type Item
   @model(queries: null, subscriptions: null)
-  @key(name: "itemsByList", fields: ["listID"])
+  @key(name: "itemsByList", fields: ["listID", "updatedAt"])
   @auth(rules: [{ allow: private }, { allow: private, provider: iam }]) {
   id: ID!
   name: String!
   quantity: String
+  status: ItemStatusEnum
   listID: ID!
+  updatedAt: AWSDateTime
+}
+
+enum ItemStatusEnum {
+  ACTIVE
+  INACTIVE
 }
 
 type Subscription {

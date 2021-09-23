@@ -4,7 +4,7 @@
     "resourceNameTruncated": "shoppia4ad7ac6",
     "userPoolName": "shoppinglistUserPool",
     "autoVerifiedAttributes": [
-        "email"
+        "phone_number"
     ],
     "mfaConfiguration": "OPTIONAL",
     "mfaTypes": [
@@ -63,7 +63,6 @@
     },
     "breakCircularDependency": true,
     "permissions": [],
-
     "dependsOn": [
         {
             "category": "function",
