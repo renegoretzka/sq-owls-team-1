@@ -99,7 +99,7 @@ export async function createShoppingList(newShoppingList) {
   // clean data
   await API.graphql({
     query: createShoppingListMutation,
-    variables: { input: newMutation },
+    variables: { input: newShoppingList },
   });
 }
 

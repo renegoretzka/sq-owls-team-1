@@ -30,14 +30,14 @@ const items = [
 
 const DashBoard = () => {
   return (
-    <div className="dashboard">
+    <div className="dashboard"> 
       <TopBar />
       <div className="dash-main">
         <div className="left">
           <Banner />
 
           <div className="input-form">
-            <input type="text" placeholder="Add items" />
+            <input type="text" placeholder="Add items"/>
             <button>
               <AiOutlineShoppingCart />
             </button>

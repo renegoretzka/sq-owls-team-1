@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-const ShoppingItem = ({ item, mini }) => {
+const ShoppingItem = ({ item, mini, deleteCallback }) => {
   const [shoppingItem, setItem] = useState({ ...item });
 
   const increaseCount = () =>
     setItem({ ...shoppingItem, count: shoppingItem.count + 1 });
 
   const decreaseCount = () => {
-    if (shoppingItem.count === 1) return;
+    if (shoppingItem.count === 1) {
+      deleteCallback(shoppingItem);
+    }
     setItem({ ...shoppingItem, count: shoppingItem.count - 1 });
   };
 
@@ -16,7 +18,7 @@ const ShoppingItem = ({ item, mini }) => {
       <div className="item-icon">{shoppingItem.name[0]}</div>
       <div className="item-main">
         <div className="item-name">{shoppingItem.name}</div>
-        <div className="item-price">{`$${shoppingItem.prize}`}</div>
+        <div className="item-price">{`$${shoppingItem.prize??0}`}</div>
       </div>
 
       {!mini && (

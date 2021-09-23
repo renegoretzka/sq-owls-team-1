@@ -1,4 +1,4 @@
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
 import useWindowDimensions from "./useWindowDimensions";
 
 const DestopNav = () => {
@@ -6,6 +6,9 @@ const DestopNav = () => {
     <nav className="desktop-nav">
       <div className="logo">
         <AiOutlineShoppingCart />
+      </div>
+      <div className="logo-alt">
+        <AiOutlineMenu/>
       </div>
     </nav>
   );
