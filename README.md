@@ -26,4 +26,8 @@ Shopping was and will always be the part of our daily routine. Sometimes we have
 Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. 
 
 ### Backend Communication
+`AWS Amplify`  is a set of tools and services that can be used together or on their own, to help front-end web and mobile developers build scalable full stack applications, powered by AWS. It is available for a lot of platforms, including React and Android. Amazon DynamoDB is a database behind the webserver and GraphQL was used as a query language for communication
+
+### Architecture
+![Screen Shot 2021-09-08 at 10 08 00](https://user-images.githubusercontent.com/57729718/134558227-50c43c19-356d-4261-80d9-25d554c831d2.png)
 
