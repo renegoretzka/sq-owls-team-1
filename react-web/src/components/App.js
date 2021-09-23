@@ -3,11 +3,11 @@ import Nav from "./tools/Nav";
 import DashBoard from "./dashboard";
 import { Auth } from "aws-amplify";
 import Amplify from "aws-amplify";
-import awsExports from "../aws-exports";
+//import awsExports from "../aws-exports";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 
-Amplify.configure(awsExports);
+//Amplify.configure(awsExports);
 
 console.log(Auth.currentUserInfo());
 
@@ -29,4 +29,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App);
+export default App//withAuthenticator(App);

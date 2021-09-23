@@ -1,34 +1,63 @@
 // Doc: https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/module-four/
 
 import { API } from "aws-amplify";
-import { listTodos } from "../graphql/queries";
+import { getUser as getUserQuery } from "../graphql/queries";
 import {
-  createTodo as createTodoMutation,
-  deletetodo as deleteTodoMutation,
+  createItem as createItemMutation,
+  updateItem as updateItemMutation,
+  deleteItem as deleteItemMutation,
 } from "../graphql/mutations";
 
-export async function fetchTodos() {
-  const { data } = await API.graphql({ query: listTodos });
-  return data.listTodos.items; // Just data?
+export async function getUser() {
+  const { data } = await API.graphql({ query: getUserQuery });
+  return data; // Just data?
 }
 
-export async function createTodo(newTodo) {
-  if (!newTodo.name || !newTodo.description) return;
+export async function fetchItems() {
+  const items = [
+    {
+      name: "Banana",
+      id: "abc",
+      count: 1,
+    },
+    {
+      name: "Loaf of bread",
+      id: "asd",
+      count: 2,
+    },
+    {
+      name: "Tin of milk",
+      id: "abcs",
+      count: 1,
+    },
+    {
+      name: "Cooking gas",
+      id: "a2bc",
+      count: 3,
+    },
+  ];
+  return items;
+}
+
+export async function createItem(newItem) {
+  if (!newItem.name || !newItem.quantity) return;
   await API.graphql({
-    query: createTodoMutation,
-    variables: { input: newTodo },
+    query: createItemMutation,
+    variables: { input: newItem },
   });
-  //setTodos([...todos, newTodo]);
-  //setFormData(initialFormState);
 }
 
-export async function deleteTodo({ id }) {
-  /* This should be handled in react
-  const newTodosArray = todo.filter((todo) => todo.id !== id);
-  setTodos(newTodosArray);
-  */
+export async function updateItem(newItem) {
+  if (!newItem.name || !newItem.quantity) return;
   await API.graphql({
-    query: deleteTodoMutation,
+    query: updateItemMutation,
+    variables: { input: newItem },
+  });
+}
+
+export async function deleteItem(id) {
+  await API.graphql({
+    query: deleteItemMutation,
     variables: { input: { id } },
   });
 }

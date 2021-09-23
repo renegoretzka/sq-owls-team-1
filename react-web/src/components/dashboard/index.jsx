@@ -1,27 +1,29 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import ShoppingItem from "./ShoppingItem";
 import TopBar from "./TopBar";
 import Banner from "./DashBoardBanner";
+import ShoppingList from "./ShoppingList";
 
 const items = [
   {
     name: "Banana",
-    prize: "2.99",
+    id: "abc",
     count: 1,
   },
   {
     name: "Loaf of bread",
-    prize: "1.99",
+    id: "asd",
     count: 2,
   },
   {
     name: "Tin of milk",
-    prize: "40",
+    id: "abcs",
     count: 1,
   },
   {
     name: "Cooking gas",
-    prize: "85",
+    id: "a2bc",
     count: 3,
   },
 ];
@@ -41,9 +43,7 @@ const DashBoard = () => {
             </button>
           </div>
           <div className="list-title">My List</div>
-          {items.map((item, index) => (
-            <ShoppingItem key={index} item={item} />
-          ))}
+          <ShoppingList listID={undefined} />
         </div>
 
         <aside className="right">
