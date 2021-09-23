@@ -7,7 +7,11 @@ import awsExports from "../aws-exports";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import { getUser } from "../graphql/custom/user.queries";
-import { createItem } from "../graphql/custom/mutations";
+import {
+  createItem,
+  createMembership,
+  createShoppingList,
+} from "../graphql/custom/mutations";
 import { syncItems } from "../graphql/custom/subscription";
 
 Amplify.configure(awsExports);
@@ -76,18 +80,28 @@ function App() {
 
   // useEffect(subscribeToList, [refresh, user]);
 
-  const createNewList = (newListName) => {
+  const createNewList = async (newListName) => {
     console.log(newListName);
     if (!user) return;
     try {
-      let result = await API.graphql({
-        query: createItem,
+      let shopResult = await API.graphql({
+        query: createShoppingList,
         variables: {
-          name: newLItemName,
-          quantity: "2KG",
-          listID: currentListId,
+          name: newListName,
         },
       });
+
+      let membershipResult = await API.graphql({
+        query: createMembership,
+        variables: {
+          userID: userId,
+          listID: shopResult.data.createShoppingList.id,
+        },
+      });
+
+      setList([...lists, membershipResult.data.createMembership]);
+
+      setModalVisible(false);
     } catch (error) {
       console.log("Error from addDemoItem", error);
     }

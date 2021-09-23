@@ -49,4 +49,9 @@ const createMembership = /* GraphQL */ `
   }
 `;
 
-export { createItem, createMembership };
+export {
+  createItem,
+  createMembership,
+  createMembershipNewList,
+  createShoppingList,
+};
