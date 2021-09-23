@@ -2,6 +2,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import ShoppingItem from "./ShoppingItem";
 import TopBar from "./TopBar";
 import Banner from "./DashBoardBanner";
+import AddListModal from "./AddListModal";
+import { useState } from "react";
 
 const items = [
   {
@@ -26,23 +28,51 @@ const items = [
   },
 ];
 
-const DashBoard = () => {
+const DashBoard = ({
+  currentList,
+  modalVisible,
+  setModalVisible,
+  createNewList,
+  createNewItem,
+}) => {
+  const listItems = currentList?.list.items.items || [];
+  const listName = currentList?.list.name || "";
+
+  const [newItemName, setNewItemName] = useState("");
+
+  const handleAddItem = (e) => {
+    if (newItemName === "") return;
+    createNewItem(newItemName);
+    setNewItemName("");
+  };
+
   return (
     <div className="dashboard">
+      {modalVisible && (
+        <AddListModal
+          setModalVisible={setModalVisible}
+          createNewList={createNewList}
+        />
+      )}
       <TopBar />
       <div className="dash-main">
         <div className="left">
           <Banner />
 
           <div className="input-form">
-            <input type="text" placeholder="Add items" />
-            <button>
+            <input
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+              type="text"
+              placeholder="Add items"
+            />
+            <button onClick={handleAddItem}>
               <AiOutlineShoppingCart />
             </button>
           </div>
-          <div className="list-title">My List</div>
-          {items.map((item, index) => (
-            <ShoppingItem key={index} item={item} />
+          <div className="list-title">{listName}</div>
+          {listItems.map((item) => (
+            <ShoppingItem key={item.id} item={item} />
           ))}
         </div>
 

@@ -16,7 +16,7 @@ const ShoppingItem = ({ item, mini }) => {
       <div className="item-icon">{shoppingItem.name[0]}</div>
       <div className="item-main">
         <div className="item-name">{shoppingItem.name}</div>
-        <div className="item-price">{`$${shoppingItem.prize}`}</div>
+        <div className="item-price">{`${shoppingItem.quantity}`}</div>
       </div>
 
       {!mini && (

@@ -5,6 +5,7 @@ const createItem = /* GraphQL */ `
       name
       quantity
       listID
+      updatedAt
     }
   }
 `;

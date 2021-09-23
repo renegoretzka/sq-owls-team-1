@@ -12,18 +12,14 @@ import { syncItems } from "../graphql/custom/subscription";
 
 Amplify.configure(awsExports);
 
-console.log(Auth.currentUserInfo());
-
 function App() {
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState(null);
   const [lists, setList] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [currentListId, setCurrentListId] = useState(null);
-
-  const currentList = lists.find((list) => list.list.id === currentListId);
-
-  console.log(currentList, "currentList", currentListId, lists);
+  const [currentList, setCurrentList] = useState(null);
 
   const fetchUser = async () => {
     const { attributes } = await Auth.currentUserInfo();
@@ -42,24 +38,6 @@ function App() {
       setCurrentListId(result.data.getUser.memberships.items[0].list.id);
     } catch (error) {
       console.log("Error from setUserFromDatabase", error);
-    }
-  };
-
-  const addDemoItem = async () => {
-    if (!user) return;
-    console.log(user, user.memberships.items[0].list.id);
-    try {
-      let result = await API.graphql({
-        query: createItem,
-        variables: {
-          name: "Demo Item",
-          quantity: "2KG",
-          listID: user.memberships.items[0].list.id,
-        },
-      });
-      console.log(result);
-    } catch (error) {
-      console.log("Error from addDemoItem", error);
     }
   };
 
@@ -84,8 +62,65 @@ function App() {
   };
 
   useEffect(fetchUser, []);
+
+  useEffect(() => {
+    if (lists === []) return;
+    let currentList = lists.find((list) => list.list.id === currentListId);
+    currentList &&
+      currentList.list.items.items.sort(
+        (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+      );
+    setCurrentList(currentList);
+    console.log("currentList", currentList);
+  }, [currentListId, lists]);
+
   // useEffect(subscribeToList, [refresh, user]);
-  // useEffect(addDemoItem, [user]);
+
+  const createNewList = (newListName) => {
+    console.log(newListName);
+    if (!user) return;
+    try {
+      let result = await API.graphql({
+        query: createItem,
+        variables: {
+          name: newLItemName,
+          quantity: "2KG",
+          listID: currentListId,
+        },
+      });
+    } catch (error) {
+      console.log("Error from addDemoItem", error);
+    }
+  };
+
+  const createNewItem = async (newLItemName) => {
+    if (!user) return;
+    try {
+      let result = await API.graphql({
+        query: createItem,
+        variables: {
+          name: newLItemName,
+          quantity: "2KG",
+          listID: currentListId,
+        },
+      });
+
+      let currentList = {
+        ...lists.find((list) => list.list.id === currentListId),
+      };
+
+      currentList.list.items.items.push(result.data.createItem);
+
+      const newList = [
+        currentList,
+        ...lists.filter((list) => list.list.id !== currentListId),
+      ];
+
+      setList(newList);
+    } catch (error) {
+      console.log("Error from addDemoItem", error);
+    }
+  };
 
   return (
     <div className="App">
@@ -93,8 +128,15 @@ function App() {
         lists={lists}
         setCurrentListId={setCurrentListId}
         currentListId={currentListId}
+        setModalVisible={setModalVisible}
       />
-      <DashBoard currentList={currentList} />
+      <DashBoard
+        currentList={currentList}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        createNewList={createNewList}
+        createNewItem={createNewItem}
+      />
     </div>
   );
 }

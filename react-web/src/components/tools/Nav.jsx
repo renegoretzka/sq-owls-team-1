@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import useWindowDimensions from "./useWindowDimensions";
 
-const DestopNav = ({ lists, setCurrentListId, currentListId }) => {
+const DestopNav = ({
+  lists,
+  setCurrentListId,
+  currentListId,
+  setModalVisible,
+}) => {
   return (
     <nav className="desktop-nav">
       <div className="logo">
@@ -21,6 +27,10 @@ const DestopNav = ({ lists, setCurrentListId, currentListId }) => {
           </div>
         );
       })}
+
+      <div className="new-list">
+        <button onClick={() => setModalVisible(true)}>+</button>
+      </div>
     </nav>
   );
 };
