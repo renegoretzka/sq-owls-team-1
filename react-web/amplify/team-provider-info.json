@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "shoppinglist": {}
+      },
+      "function": {
+        "shoppinglistPostConfirmation": {
+          "deploymentBucketName": "amplify-shoppinglist-dev-231516-deployment",
+          "s3Key": "amplify-builds/shoppinglistPostConfirmation-356359644268646f6676-build.zip"
+        }
       }
     }
   }

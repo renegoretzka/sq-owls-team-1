@@ -11,16 +11,21 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.amplifyframework.AmplifyException
 import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.auth.AuthSession
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
-import com.example.myapplication.ui.ToDoScreen
+import com.example.myapplication.ui.RegistrationScreen
+import com.example.myapplication.ui.ShoppingScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
@@ -57,11 +62,27 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ToDoScreen()
+                    UserApplication()
                 }
             }
         }
     }
+}
+
+@Composable
+fun UserApplication(){
+    val navController = rememberNavController()
+    NavHost(navController =navController , startDestination ="registration"){
+        composable("registration"){
+            RegistrationScreen(navHostController = navController)
+        }
+
+        composable("item_list"){
+            ShoppingScreen()
+        }
+
+    }
+    
 }
 
 @Composable

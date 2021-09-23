@@ -1,54 +1,330 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createUser(input: $input, condition: $condition) {
       id
       name
-      description
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
+      memberships {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateUser(input: $input, condition: $condition) {
       id
       name
-      description
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
+      memberships {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteUser(input: $input, condition: $condition) {
       id
       name
-      description
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
+      memberships {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const createMembership = /* GraphQL */ `
+  mutation CreateMembership(
+    $input: CreateMembershipInput!
+    $condition: ModelMembershipConditionInput
+  ) {
+    createMembership(input: $input, condition: $condition) {
+      id
+      userID
+      listID
+      createdAt
+      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
+      list {
+        id
+        name
+        createdAt
+        updatedAt
+        users {
+          nextToken
+        }
+        items {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const updateMembership = /* GraphQL */ `
+  mutation UpdateMembership(
+    $input: UpdateMembershipInput!
+    $condition: ModelMembershipConditionInput
+  ) {
+    updateMembership(input: $input, condition: $condition) {
+      id
+      userID
+      listID
+      createdAt
+      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
+      list {
+        id
+        name
+        createdAt
+        updatedAt
+        users {
+          nextToken
+        }
+        items {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const deleteMembership = /* GraphQL */ `
+  mutation DeleteMembership(
+    $input: DeleteMembershipInput!
+    $condition: ModelMembershipConditionInput
+  ) {
+    deleteMembership(input: $input, condition: $condition) {
+      id
+      userID
+      listID
+      createdAt
+      updatedAt
+      user {
+        id
+        name
+        createdAt
+        updatedAt
+        memberships {
+          nextToken
+        }
+      }
+      list {
+        id
+        name
+        createdAt
+        updatedAt
+        users {
+          nextToken
+        }
+        items {
+          nextToken
+        }
+      }
+    }
+  }
+`;
+export const createShoppingList = /* GraphQL */ `
+  mutation CreateShoppingList(
+    $input: CreateShoppingListInput!
+    $condition: ModelShoppingListConditionInput
+  ) {
+    createShoppingList(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      items {
+        items {
+          id
+          name
+          quantity
+          status
+          listID
+          updatedAt
+          createdAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const updateShoppingList = /* GraphQL */ `
+  mutation UpdateShoppingList(
+    $input: UpdateShoppingListInput!
+    $condition: ModelShoppingListConditionInput
+  ) {
+    updateShoppingList(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      items {
+        items {
+          id
+          name
+          quantity
+          status
+          listID
+          updatedAt
+          createdAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const deleteShoppingList = /* GraphQL */ `
+  mutation DeleteShoppingList(
+    $input: DeleteShoppingListInput!
+    $condition: ModelShoppingListConditionInput
+  ) {
+    deleteShoppingList(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userID
+          listID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      items {
+        items {
+          id
+          name
+          quantity
+          status
+          listID
+          updatedAt
+          createdAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const createItem = /* GraphQL */ `
+  mutation CreateItem(
+    $input: CreateItemInput!
+    $condition: ModelItemConditionInput
+  ) {
+    createItem(input: $input, condition: $condition) {
+      id
+      name
+      quantity
+      status
+      listID
+      updatedAt
+      createdAt
+    }
+  }
+`;
+export const updateItem = /* GraphQL */ `
+  mutation UpdateItem(
+    $input: UpdateItemInput!
+    $condition: ModelItemConditionInput
+  ) {
+    updateItem(input: $input, condition: $condition) {
+      id
+      name
+      quantity
+      status
+      listID
+      updatedAt
+      createdAt
+    }
+  }
+`;
+export const deleteItem = /* GraphQL */ `
+  mutation DeleteItem(
+    $input: DeleteItemInput!
+    $condition: ModelItemConditionInput
+  ) {
+    deleteItem(input: $input, condition: $condition) {
+      id
+      name
+      quantity
+      status
+      listID
+      updatedAt
+      createdAt
     }
   }
 `;
