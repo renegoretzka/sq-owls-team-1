@@ -12,18 +12,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.amplifyframework.AmplifyException
+import com.amplifyframework.api.aws.AWSApiPlugin
 import com.amplifyframework.auth.AuthSession
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.core.Amplify
-import com.example.myapplication.ui.RegistrationScreen
 import com.example.myapplication.ui.ToDoScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
             // Add this line, to include the Auth plugin.
+            // Add these lines to add the AWSApiPlugin plugins
+
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(AWSApiPlugin())
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.configure(applicationContext)
             Log.i("MyAmplifyApp", "Initialized Amplify")
@@ -52,7 +57,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    RegistrationScreen()
+                    ToDoScreen()
                 }
             }
         }

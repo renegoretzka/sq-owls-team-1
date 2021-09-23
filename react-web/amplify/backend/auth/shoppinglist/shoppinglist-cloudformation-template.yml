@@ -252,12 +252,10 @@ Resources:
       
       
       
-      AutoVerifiedAttributes:
-      
+      AutoVerifiedAttributes
         - email
       
-      
-      
+
       EmailVerificationMessage: !Ref emailVerificationMessage
       EmailVerificationSubject: !Ref emailVerificationSubject
       

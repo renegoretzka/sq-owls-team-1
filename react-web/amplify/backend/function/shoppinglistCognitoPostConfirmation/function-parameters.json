@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "api": {
+      "shoppinglist": [
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

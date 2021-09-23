@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amplifyframework:aws-api:1.24.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f3d9f94d291e8cc682a37ee72baa4829/transformed/jetified-aws-api-1.24.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f3d9f94d291e8cc682a37ee72baa4829/transformed/jetified-aws-api-1.24.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f3d9f94d291e8cc682a37ee72baa4829/transformed/jetified-aws-api-1.24.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amplifyframework/aws-api/1.24.0/1ad25dda93a921aa058eeddb15716b445fe8ea5d/aws-api-1.24.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
