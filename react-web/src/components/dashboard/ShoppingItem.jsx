@@ -1,37 +1,26 @@
-import { useState } from "react";
+import { BsCheckAll } from "react-icons/bs";
+import { AiTwotoneCheckSquare } from "react-icons/ai";
 
-const ShoppingItem = ({ item, mini, deleteCallback }) => {
-  const [shoppingItem, setItem] = useState({ ...item });
-
-  const increaseCount = () =>
-    setItem({ ...shoppingItem, count: shoppingItem.count + 1 });
-
-  const decreaseCount = () => {
-    if (shoppingItem.count === 1) {
-      deleteCallback(shoppingItem);
-    }
-    setItem({ ...shoppingItem, count: shoppingItem.count - 1 });
-  };
-
+const ShoppingItem = ({ item, handleDeactivate }) => {
   return (
     <div className="shopping-item">
-      <div className="item-icon">{shoppingItem.name[0]}</div>
+      <div className="item-icon">{item.name[0]}</div>
       <div className="item-main">
-        <div className="item-name">{shoppingItem.name}</div>
-        <div className="item-price">{`$${shoppingItem.prize??0}`}</div>
+        <div className="item-name">{item.name}</div>
+        <div className="item-price">{`${item.quantity}`}</div>
       </div>
+      <div className="item-count">
+        {item.status === "ACTIVE" ? (
+          <AiTwotoneCheckSquare
+            className="active"
+            onClick={() => handleDeactivate(item.id)}
+          />
+        ) : (
+          <BsCheckAll onClick={() => handleDeactivate(item.id)} />
+        )}
 
-      {!mini && (
-        <div className="item-count">
-          <button onClick={increaseCount} className="btn1">
-            +
-          </button>
-          <div className="count">{shoppingItem.count}</div>
-          <button onClick={decreaseCount} className="btn2">
-            -
-          </button>
-        </div>
-      )}
+        <div className="count">{item.count}</div>
+      </div>
     </div>
   );
 };

@@ -7,9 +7,10 @@ export const syncItems = /* GraphQL */ `
       id
       name
       quantity
+      status
       listID
-      createdAt
       updatedAt
+      createdAt
     }
   }
 `;

@@ -8,115 +8,86 @@ import ShoppingList from "./ShoppingList";
 import { fetchItems, createItem, deleteItem } from "../../api/api";
 import ItemForm from "../itemform/ItemForm";
 import Alert from "../tools/Alert";
+import AddListModal from "./AddListModal";
+import UserItem from "./userItem";
 
-const items = [
-  {
-    name: "Banana",
-    id: "abc",
-    count: 1,
-  },
-  {
-    name: "Loaf of bread",
-    id: "asd",
-    count: 2,
-  },
-  {
-    name: "Tin of milk",
-    id: "abcs",
-    count: 1,
-  },
-  {
-    name: "Cooking gas",
-    id: "a2bc",
-    count: 3,
-  },
-];
+const DashBoard = ({
+  currentList,
+  modalVisible,
+  setModalVisible,
+  createNewList,
+  createNewItem,
+  handleDeactivate,
+}) => {
+  const listItems = currentList?.list.items.items || [];
+  const listName = currentList?.list.name || "";
 
-const sortingMethods = {
-  "alp-asc": (a, b) => ("" + a.name).localeCompare(b.name),
-  "alp-des": (b, a) => ("" + a.name).localeCompare(b.name),
-  "cnt-asc": (a, b) => a.count - b.count,
-  "cnt-des": (b, a) => a.count - b.count,
-};
+  const [newItemName, setNewItemName] = useState("");
 
-const DashBoard = () => {
-  const [items, setItems] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
-  const [showAlert, setShowAlert] = useState("");
-  const [sortedBy, setSortedBy] = useState("alp-asc");
-
-  const loadData = async () => {
-    const res = await fetchItems();
-    res.sort(sortingMethods[sortedBy]);
-    console.log(res);
-    setItems(res);
+  const handleAddItem = (e) => {
+    if (newItemName === "") return;
+    createNewItem(newItemName);
+    setNewItemName("");
   };
-
-  useEffect(() => {
-    loadData();
-    return () => {
-      // await push list to server
-    };
-  }, []);
-
-  function addListItem(newItem) {
-    setShowPopup(false);
-    if (newItem) {
-      let newList = [...items, newItem];
-      newList.sort(sortingMethods[sortedBy]);
-
-      setItems(newList);
-      //createItem(newItem); // should we await this?
-    }
-  }
-
-  function deleteListItem({ id }) {
-    const newItems = items.filter((item) => item.id !== id);
-    setItems(newItems);
-    // deleteItem(id);
-  }
-
-  function handleSearch() {
-    setShowPopup(true);
-    //setSearchValue("");
-  }
 
   return (
     <div className="dashboard">
+      {modalVisible && (
+        <AddListModal
+          setModalVisible={setModalVisible}
+          createNewList={createNewList}
+        />
+      )}
+
       <TopBar />
       <div className="dash-main">
         <div className="left">
           <Banner />
           <div className="input-form">
             <input
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
               type="text"
               placeholder="Add items"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
             />
-            <button onClick={handleSearch}>
+            <button onClick={handleAddItem}>
               <AiOutlineShoppingCart />
             </button>
           </div>
-          {showPopup && (
-            <ItemForm name={searchValue} submitCallback={addListItem} />
-          )}
-          {showAlert && <Alert text={showAlert} />}
-          <div className="list-title">My List</div>
-          <ShoppingList items={items} deleteCallback={deleteListItem} />
+          <div className="list-title">{listName}</div>
+          {listItems
+            .filter((item) => item.status === "ACTIVE")
+            .map((item) => (
+              <ShoppingItem
+                handleDeactivate={handleDeactivate}
+                key={item.id}
+                item={item}
+              />
+            ))}
         </div>
 
         <aside className="right">
           <div className="list-title">Recent Items</div>
-          {items.slice(0, 3).map((item, index) => (
-            <ShoppingItem key={index} item={item} mini={true} />
+          {listItems
+            .filter((item) => item.status === "INACTIVE")
+            .slice(0, 5)
+            .map((item, index) => (
+              <ShoppingItem
+                handleDeactivate={handleDeactivate}
+                key={index}
+                item={item}
+                mini={true}
+              />
+            ))}
+          <br />
+          <br />
+          <div className="list-title">who else can see this list</div>
+          {["Father", "Mother"].map((username, index) => (
+            <UserItem username={username} key={index} />
           ))}
-
-          <div className="list-title">Most Frequent</div>
-          {items.slice(0, 2).map((item, index) => (
-            <ShoppingItem key={index} item={item} mini={true} />
-          ))}
+          <button className="add-user">
+            <span>+</span> Add someone else
+          </button>
         </aside>
       </div>
     </div>
