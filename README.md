@@ -9,27 +9,25 @@ Shopping was and will always be the part of our daily routine. Sometimes we have
 
 # User stories :frowning_man:
 
-- [ ] User is able to access application via the phone number registration
-- [ ] After the phone number is successfully verified, user is able to access his profile
-- [ ] On the page user is able to see the lists he is the member of
-- [ ] By clicking on the list name the items there are revealved
-- [ ] In case user adds item to the list anyone subscribed to this list will immediately see anything the user added
-- [ ] User can create lists himself
+- [ ] As a user I would like to secure my data and able to access application only via username/phone number and password
+- [ ] As a user I would like to see the lists I am the member of
+- [ ] As a user I would like to see the items of the list I have chosen
+- [ ] As a user, I would like to have real-time syncing of my shopping list, so in case another member of the list added an item in last minute I know about it
+- [ ] As a user i would like to create lists myself
 
 
 # Architecture description ⚙️
 ### Log in :desktop_computer:
 
- The `Amazon Cognito` was used to implement authentication and authorization. All the users and their encrypted passwords are stored in the  database
+ The `Amazon Cognito` was used to implement authentication, for authorization `Amazon AppSync. All the users and their encrypted passwords are stored in the  database
 
 
 ### Design :rice_scene:
 
-Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. We inspired from different design ideas
+Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. We inspired from different design ideas and came up with the sketch
 
 
 <img width="1387" alt="Screen Shot 2021-09-24 at 12 35 22" src="https://user-images.githubusercontent.com/57729718/134661200-7a50fc78-4c1e-48ea-a1bc-e315c722a004.png">
-
 
 
 ### Backend Communication :email:
@@ -41,8 +39,8 @@ Firstly we have created the sketch of our design for mobile view and extended it
 
 In the DB we store the following data (tables):
 - Items
-- ItemStatuses
 - ShoppingLists
+- Memberships
 - Users
 
 
