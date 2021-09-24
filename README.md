@@ -19,12 +19,12 @@ Shopping was and will always be the part of our daily routine. Sometimes we have
 # Architecture description ⚙️
 ### Log in :desktop_computer:
 
- The `Amazon Cognito` was used to implement authentication, for authorization `Amazon AppSync. All the users and their encrypted passwords are stored in the  database
+ The `Amazon Cognito` was used to implement authentication, for authorization `Amazon AppSync. All the users and their encrypted passwords are stored in the  database.
 
 
 ### Design :rice_scene:
 
-Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. We inspired from different design ideas and came up with the sketch
+Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. We inspired from different design ideas and came up with the sketch.
 
 
 <img width="1387" alt="Screen Shot 2021-09-24 at 12 35 22" src="https://user-images.githubusercontent.com/57729718/134661200-7a50fc78-4c1e-48ea-a1bc-e315c722a004.png">
@@ -32,13 +32,13 @@ Firstly we have created the sketch of our design for mobile view and extended it
 
 ### Backend Communication :email:
 
-`AWS Amplify`  is a set of tools and services that can be used together or on their own, to help front-end web and mobile developers build scalable full stack applications, powered by AWS. It is available for a lot of platforms, including React and Android. Amazon DynamoDB is a database behind the webserver and GraphQL was used as a query language for communication
+`AWS Amplify`  is a set of tools and services that can be used together or on their own, to help front-end web and mobile developers build scalable full stack applications, powered by AWS. It is available for a lot of platforms, including React and Android. `Amazon DynamoDB` is a database behind the `AppSync` and GraphQL was used as a query language for communication.
 
 ### Architecture
-![Untitled_Diagram drawio_1](https://user-images.githubusercontent.com/57729718/134559332-bb81b704-a3ea-48e5-8091-a184d878864f.png)
+![Untitled_Diagram drawio_1](https://user-images.githubusercontent.com/57729718/134559332-bb81b704-a3ea-48e5-8091-a184d878864f.png).
 
 ### Client platforms
-We have decided to make app avaialable to more users, so we started the implementation of 2 versions: WebApp React and Mobile App for Android. React application is working properly, however, Android is missing the fetching and posting data to the backend functionality (even though authorization and authentication features are working fine) 
+We have decided to make app avaialable to more users, so we started the implementation of 2 versions: WebApp React and Mobile App for Android. React application is working properly, however, Android is missing the fetching and posting data to the backend functionality (even though authorization and authentication features are working fine).
 
 ### Data
 In the DB we store the following data (tables):
@@ -46,6 +46,9 @@ In the DB we store the following data (tables):
 - ShoppingLists
 - Memberships
 - Users
+
+
+
 
 
 
