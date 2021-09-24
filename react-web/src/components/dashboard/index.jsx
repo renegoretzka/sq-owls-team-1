@@ -23,11 +23,13 @@ const DashBoard = ({
   const listName = currentList?.list.name || "";
 
   const [newItemName, setNewItemName] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleAddItem = (e) => {
     if (newItemName === "") return;
     createNewItem(newItemName);
     setNewItemName("");
+    setShowAlert(true);
   };
 
   return (
@@ -54,6 +56,13 @@ const DashBoard = ({
               <AiOutlineShoppingCart />
             </button>
           </div>
+          {showAlert && (
+            <Alert
+              type="success"
+              text="Item added successfully"
+              closeCallback={() => setShowAlert(false)}
+            />
+          )}
           <div className="list-title">{listName}</div>
           {listItems
             .filter((item) => item.status === "ACTIVE")

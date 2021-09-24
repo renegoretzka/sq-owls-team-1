@@ -428,7 +428,7 @@ body {
 
 .item-form {
   width: 100%;
-  position:relative;
+  position: relative;
   margin: 0.8em 0;
   display: flex;
   background: #efefefa1;
@@ -442,14 +442,32 @@ body {
 
 .alert {
   width: 100%;
-  position:relative;
-  margin: 0.8em 0;
-  display: flex;
-  background-color: var(--primary);
-  opacity: 1;
-  border-radius: 10px;
-  padding: 0.4em;
-  box-sizing: border-box;
+  height: 50px;
+  background: #fff;
+  margin: 0 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.alert .error {
+  background: #ecc8c5;
+  color: #b32f2d;
+}
+
+.alert .success {
+  background: #def2d6;
+  color: #5a7052;
+}
+.alert .error:hover {
+  background: #c79995;
+}
+
+.alert .success:hover {
+  background: #adc5a5;
 }
 
 /* alert style ends here */

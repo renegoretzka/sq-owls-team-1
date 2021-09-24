@@ -1,17 +1,22 @@
-import { AiFillPlusSquare } from "react-icons/ai";
+import { useEffect } from "react";
 
-export default function ItemForm({ text, closeCallback }) {
+export default function ItemForm({ text, closeCallback, type = "success" }) {
   function handleClose(e) {
     closeCallback();
-    e.preventDefault();
+    e?.preventDefault();
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      handleClose();
+    }, 500);
+
+    return () => {};
+  }, []);
+
   return (
-    <div className="alert">
-      <div>{text}</div>
-      <button type="button">
-        <AiFillPlusSquare />
-      </button>
-    </div>
+    <button className={`alert ${type}`} onClick={handleClose}>
+      {text}
+    </button>
   );
 }
