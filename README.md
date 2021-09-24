@@ -36,6 +36,10 @@ Firstly we have created the sketch of our design for mobile view and extended it
 
 ### Architecture
 ![Untitled_Diagram drawio_1](https://user-images.githubusercontent.com/57729718/134559332-bb81b704-a3ea-48e5-8091-a184d878864f.png)
+
+### Client platforms
+We have decided to make app avaialable to more users, so we started the implementation of 2 versions: WebApp React and Mobile App for Android. React application is working properly, however, Android is missing the fetching and posting data to the backend functionality (even though authorization and authentication features are working fine) 
+
 ### Data
 In the DB we store the following data (tables):
 - Items
