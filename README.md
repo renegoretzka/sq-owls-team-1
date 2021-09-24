@@ -56,7 +56,11 @@ In the DB we store the following data (tables):
 1. `git clone https://github.com/renegoretzka/sq-owls-team-1`
 
 ### Android app
-1. Run the Project using the Android Studio Acrctic fox 
+1. Run the Project using the `Android Studio Acrctic fox` simulator
+
+
+### React app
+
 
 
 # DEMO
