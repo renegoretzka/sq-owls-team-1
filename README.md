@@ -55,14 +55,10 @@ In the DB we store the following data (tables):
 - [ ] Improving the UI and adding beautiful animations :smile:
 
 # Setup and installation
-1. `git clone https://github.com/renegoretzka/sq-owls-team-1`
-
-### Android app
-1. Run the Project using the `Android Studio Acrctic fox` simulator
-
-
-### React app
-
+1. Install the amplify CLI: npm install -g @aws-amplify/cli
+2. Configure your AWS account with the cli by running amplify configure
+3. Run amplify init in the react-web folder
+4. Run amplify push
 
 
 # DEMO
