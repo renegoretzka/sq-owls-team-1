@@ -15,7 +15,7 @@ Shopping has been and always will be the part of our daily routine. Sometimes we
 - [ ] As a user I would like to see the lists I am the member of
 - [ ] As a user I would like to see the items of the list I have chosen
 - [ ] As a user, I would like to have real-time syncing of my shopping list, so in case another member of the list added an item in last minute I know about it
-- [ ] As a user i would like to create lists myself
+- [ ] As a user I would like to create lists myself
 
 
 # Architecture description ⚙️
