@@ -25,7 +25,11 @@ Shopping was and will always be the part of our daily routine. Sometimes we have
 
 ### Design :rice_scene:
 
-Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. 
+Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. We inspired from different design ideas
+![Shopping list view-1](https://user-images.githubusercontent.com/57729718/134660782-8cb693ca-cb81-4a24-b95d-5a81a4b7622d.png)
+<img width="1387" alt="Screen Shot 2021-09-24 at 12 35 22" src="https://user-images.githubusercontent.com/57729718/134661200-7a50fc78-4c1e-48ea-a1bc-e315c722a004.png">
+
+
 
 ### Backend Communication :email:
 
