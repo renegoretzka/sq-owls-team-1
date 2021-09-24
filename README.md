@@ -1,7 +1,7 @@
 ## MLH Fellowship Introduction Hackathon
 ### `sq-owls-team-1`
 
-# Shopping List App
+# ShOWLopping list:blue_book:
 
 # Introduction :open_book:
 
