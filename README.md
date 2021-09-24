@@ -47,6 +47,7 @@ In the DB we store the following data (tables):
 - Memberships
 - Users
 
+# DEMO
 
 
 
