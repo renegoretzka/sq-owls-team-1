@@ -39,6 +39,21 @@ body {
   width: 80px;
   height: 80px;
   display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5em;
+}
+
+.logo-alt {
+  font-size: 50px;
+  color: var(black);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 12px;
+  display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 0.5em;
@@ -410,6 +425,34 @@ body {
 }
 
 /* footer style ends here */
+
+.item-form {
+  width: 100%;
+  position:relative;
+  margin: 0.8em 0;
+  display: flex;
+  background: #efefefa1;
+  opacity: 1;
+  border-radius: 10px;
+  padding: 0.4em;
+  box-sizing: border-box;
+}
+
+/* form popup style ends here */
+
+.alert {
+  width: 100%;
+  position:relative;
+  margin: 0.8em 0;
+  display: flex;
+  background-color: var(--primary);
+  opacity: 1;
+  border-radius: 10px;
+  padding: 0.4em;
+  box-sizing: border-box;
+}
+
+/* alert style ends here */
 
 .signout {
   margin-right: 0px;
