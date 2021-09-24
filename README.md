@@ -28,8 +28,9 @@ Shopping has been and always will be the part of our daily routine. Sometimes we
 
 Firstly we have created the sketch of our design for mobile view and extended it to the web app after. The goal was to try to keep mobile app and web app designs consistent. We inspired from different design ideas and came up with the sketch.
 
+![CROPPED](https://user-images.githubusercontent.com/57729718/134720778-97386586-8938-4146-ac1a-00a71b842e92.png)
 
-<img width="1387" alt="Screen Shot 2021-09-24 at 12 35 22" src="https://user-images.githubusercontent.com/57729718/134661200-7a50fc78-4c1e-48ea-a1bc-e315c722a004.png">
+
 
 
 ### Backend Communication :email:
