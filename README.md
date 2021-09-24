@@ -47,6 +47,18 @@ In the DB we store the following data (tables):
 - Memberships
 - Users
 
+
+# Further development :stars:
+- [ ] Maintain the Android Client backend communication
+- [ ] Improving the UI and adding beautiful animations :smile:
+
+# Setup and installation
+1. `git clone https://github.com/renegoretzka/sq-owls-team-1`
+
+### Android app
+1. Run the Project using the Android Studio Acrctic fox 
+
+
 # DEMO
 
 
