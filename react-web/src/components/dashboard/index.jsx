@@ -1,9 +1,14 @@
+import React, { useState, useEffect } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import ShoppingItem from "./ShoppingItem";
 import TopBar from "./TopBar";
 import Banner from "./DashBoardBanner";
+import ShoppingList from "./ShoppingList";
+import { fetchItems, createItem, deleteItem } from "../../api/api";
+import ItemForm from "../itemform/ItemForm";
+import Alert from "../tools/Alert";
 import AddListModal from "./AddListModal";
-import { useState } from "react";
 import UserItem from "./userItem";
 
 const DashBoard = ({
@@ -38,7 +43,6 @@ const DashBoard = ({
       <div className="dash-main">
         <div className="left">
           <Banner />
-
           <div className="input-form">
             <input
               value={newItemName}

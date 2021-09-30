@@ -5,6 +5,7 @@ const syncItems = /* GraphQL */ `
       name
       status
       quantity
+      status
       listID
     }
   }

@@ -1,5 +1,5 @@
+import { AiOutlineShoppingCart, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import useWindowDimensions from "./useWindowDimensions";
 
 const DestopNav = ({
@@ -13,6 +13,10 @@ const DestopNav = ({
       <div className="logo">
         <AiOutlineShoppingCart />
       </div>
+      <div className="logo-alt">
+        <AiOutlineMenu/>
+      </div>
+    
       
       <div className="list-title">My Lists</div>
 
