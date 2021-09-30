@@ -43,25 +43,12 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 0.5em;
-}
-
-.logo-alt {
-  font-size: 50px;
-  color: var(black);
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.5em;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
 }
+
 
 .desktop-nav {
   width: 12%;

@@ -13,9 +13,10 @@ const DestopNav = ({
       <div className="logo">
         <AiOutlineShoppingCart />
       </div>
+{/*       
       <div className="logo-alt">
         <AiOutlineMenu/>
-      </div>
+      </div> */}
     
       
       <div className="list-title">My Lists</div>
