@@ -3,6 +3,7 @@ const syncItems = /* GraphQL */ `
     syncItems(listID: $listID) {
       id
       name
+      status
       quantity
       listID
     }

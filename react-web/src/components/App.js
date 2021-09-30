@@ -21,7 +21,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState(null);
   const [lists, setList] = useState([]);
-  const [refresh, setRefresh] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [currentListId, setCurrentListId] = useState(null);
   const [currentList, setCurrentList] = useState(null);
@@ -50,10 +50,11 @@ function App() {
     if (!user) return;
     if (lists.length < 1) return;
     let subscriptions = [];
+    if (subscribed === true) return;
 
     for (let i = 0; i < lists.length; i++) {
       const listId = lists[i].list.id;
-
+      console.log("subscribing to list");
       subscriptions[i] = API.graphql({
         query: syncItems,
         variables: { listID: listId },
@@ -71,8 +72,9 @@ function App() {
           ];
 
           setList(newLists);
+          setSubscribed(true);
         },
-        error: (error) => setRefresh(!refresh),
+        error: (error) => setSubscribed(!subscribed),
       });
     }
 
@@ -96,6 +98,7 @@ function App() {
         (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
       );
     setCurrentList(currentList);
+    console.log("currentList", currentList);
   }, [currentListId, lists]);
 
   useEffect(fetchUser, []);
@@ -166,11 +169,6 @@ function App() {
         (item) => item.id === itemId
       );
 
-      await API.graphql({
-        query: updateItem,
-        variables: { ...currentItem, status: "INACTIVE" },
-      });
-
       currentItem.status = "INACTIVE";
 
       const newList = [
@@ -179,6 +177,11 @@ function App() {
       ];
 
       setList(newList);
+
+      await API.graphql({
+        query: updateItem,
+        variables: { ...currentItem, status: "INACTIVE" },
+      });
     } catch (e) {
       console.log("error while handling deactivate", e);
     }
